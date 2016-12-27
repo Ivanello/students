@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 # from django.http import Http404 
 # from django.http import HttpResponse
 
@@ -29,7 +31,23 @@ from django.http import HttpResponse
 #Students
 
 def students_list(request):
-	return render(request, 'students/students_list.html', {})
+	students = (
+        {'id': 1,
+         'first_name': u'Віталій',
+         'last_name': u'Подоба',
+         'ticket': 235,
+         'image': 'img/1.jpg'},
+        {'id': 2,
+         'first_name': u'Корост',
+         'last_name': u'Андрій',
+         'ticket': 2123,
+         'image': 'img/me.jpg'},
+		{'id': 3,
+         'first_name': u'Іван',
+         'last_name': u'Майдан',
+         'ticket': 212,
+         'image': 'img/me.jpg'},)
+	return render(request, 'students/students_list.html', {'students': students})
 
 def students_add(request):
 	return HttpResponse('<h1>Student add form</h1>')
