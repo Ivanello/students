@@ -13,9 +13,33 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url
+from django.conf.urls import url,include
 from django.contrib import admin
+from students import views
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
+    # url(r'^$', views.home, name='home')
+
+    #Students
+
+    url(r'^$', views.students_list, name='home'),
+    url(r'^students/add/$', views.students_add, name='students_add'),
+    url(r'^students/(?P<sid>\d+)/edit/$', views.students_edit, name='students_edit'),
+    url(r'^students/(?P<sid>\d+)/delete/$', views.students_delete, name='students_delete'),
+    
+    #Groups
+
+    url(r'^groups/$', views.groups_list, name='groups'),
+    url(r'^groups/add/$', views.groups_add, name='groups_add'),
+    url(r'^groups/(?P<sid>\d+)/edit/$', views.groups_edit, name='groups_edit'),
+    url(r'^groups/(?P<sid>\d+)/del/$', views.groups_delete, name='groups_delete'),
+    
+    #Journal
+    
+    url(r'^journal/$', views.journal, name='journal'),
+    url(r'^journal/update/$', views.journal_update, name='journal_update'),
+    url(r'^journal/(?P<sid>\d+)/$', views.journal_personal, name='journal_personal'),
+
+
+    url(r'^admin/', include(admin.site.urls)),
 ]
