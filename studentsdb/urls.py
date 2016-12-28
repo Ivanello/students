@@ -16,12 +16,15 @@ Including another URLconf
 from django.conf.urls import url,include
 from django.contrib import admin
 from students import views
+from .settings import MEDIA_ROOT, DEBUG, MEDIA_URL
+from django.conf.urls.static import static
+
+
+# admin.autodiscover()
 
 urlpatterns = [
-    # url(r'^$', views.home, name='home')
 
     #Students
-
 
     url(r'^$', views.students_list, name='home'),
     url(r'^students/add/$', views.students_add, name='students_add'),
@@ -41,6 +44,7 @@ urlpatterns = [
     url(r'^journal/update/$', views.journal_update, name='journal_update'),
     url(r'^journal/(?P<sid>\d+)/$', views.journal_personal, name='journal_personal'),
 
-
-    url(r'^admin/', include(admin.site.urls)),
-]
+    url(r'^admin/', include(admin.site.urls), name='admin')
+] 
+if DEBUG:
+    urlpatterns += static(MEDIA_URL, document_root=MEDIA_ROOT)
