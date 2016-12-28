@@ -22,9 +22,7 @@ $ cd proj/virtualenvs/studentsdb
 $ source bin/activate
 (studentsdb)$ cd scr/studentsdb
 (studentsdb)$ python manage.py runserver
-Performing system checks...
-System check identified no issues (0 silenced).
-November 01, 2014 - 13:01:39
-Django version 1.7.1, using settings ’studentsdb.settings’
-Starting development server at http://127.0.0.1:8000/
-Quit the server with CONTROL-C.
+
+(studentsdb)$ python manage.py shell
+
+stud = Student(first_name="Vitaliy", last_name="Podoba", birthday=timezone.now(), ticket="234")
